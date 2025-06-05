@@ -78,6 +78,13 @@ const Navbar = () => {
           <a href="#about" className="nav-link">About</a>
           <a href="#services" className="nav-link">Services</a>
           <a href="#contact" className="nav-link">Contact</a>
+             <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
         </nav>
 
         {/* Mobile Menu Button & Theme Toggle */}
