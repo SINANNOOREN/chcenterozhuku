@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -40,6 +39,10 @@ const Navbar = () => {
     setIsDark(!isDark);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <header
       className={cn(
@@ -51,7 +54,11 @@ const Navbar = () => {
     >
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link 
+          to="/" 
+          onClick={scrollToTop}
+          className="flex items-center gap-2"
+        >
           <img 
             src="/chlogo.png" 
             alt="CH Centre Logo" 
@@ -67,18 +74,13 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1">
-          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/" className="nav-link" onClick={scrollToTop}>Home</Link>
           <a href="#about" className="nav-link">About</a>
           <a href="#services" className="nav-link">Services</a>
-       
-       
           <a href="#contact" className="nav-link">Contact</a>
         </nav>
 
-        {/* Action Buttons */}
-      
-
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button & Theme Toggle */}
         <div className="flex md:hidden items-center gap-2">
           <button 
             onClick={toggleTheme}
@@ -100,13 +102,37 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} glass-card shadow-lg mt-2 mx-4 rounded-lg overflow-hidden`}>
         <nav className="flex flex-col">
-          <Link to="/" className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onClick={toggleMenu}>Home</Link>
-          <a href="#about" className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onClick={toggleMenu}>About</a>
-          <a href="#services" className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onClick={toggleMenu}>Services</a>
-      
-          <a href="#contact" className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onClick={toggleMenu}>Contact</a>
-          
-      
+          <Link 
+            to="/" 
+            onClick={() => {
+              toggleMenu();
+              scrollToTop();
+            }}
+            className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          >
+            Home
+          </Link>
+          <a 
+            href="#about" 
+            className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" 
+            onClick={toggleMenu}
+          >
+            About
+          </a>
+          <a 
+            href="#services" 
+            className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" 
+            onClick={toggleMenu}
+          >
+            Services
+          </a>
+          <a 
+            href="#contact" 
+            className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" 
+            onClick={toggleMenu}
+          >
+            Contact
+          </a>
         </nav>
       </div>
     </header>
