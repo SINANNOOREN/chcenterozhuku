@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WHATSAPP_NUMBER = ' 919876543210'; // e.g., 919876543210
+const WHATSAPP_NUMBER = '916238573656 '; 
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Hello!%20I%20need%20assistance.`;
 
 export default function WhatsAppChatButton() {
