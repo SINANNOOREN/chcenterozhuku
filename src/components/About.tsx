@@ -65,7 +65,7 @@ const About = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-clinic-100 to-clinic-200 dark:from-clinic-900/20 dark:to-clinic-800/20 rounded-2xl filter blur-3xl opacity-70"></div>
               <div className="relative bg-white dark:bg-gray-800 p-3 rounded-2xl shadow-xl">
                 <img
-                  src="/chabout-min.avif"
+                  src="/chlogo.png"
                   alt="Modern clinic interior"
                   className="w-full h-auto rounded-xl object-cover"
                 />

@@ -96,7 +96,7 @@ const Hero = () => {
             <div className="absolute -inset-4 bg-gradient-to-r from-clinic-200 to-clinic-100 dark:from-clinic-800/20 dark:to-clinic-700/20 rounded-full filter blur-3xl opacity-70 animate-pulse-slow"></div>
             <div className="relative bg-white dark:bg-gray-800 p-2 rounded-3xl shadow-xl">
               <img
-                src="chlogo.png"
+                src="chabout-min.avif"
                 alt="Doctor with patient"
                 className="w-full h-auto rounded-2xl object-cover"
               />
