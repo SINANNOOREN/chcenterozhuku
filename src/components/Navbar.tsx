@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -30,10 +30,6 @@ const Navbar = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [isDark]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -78,7 +74,7 @@ const Navbar = () => {
           <a href="#about" className="nav-link">About</a>
           <a href="#services" className="nav-link">Services</a>
           <a href="#contact" className="nav-link">Contact</a>
-             <button 
+          <button 
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label="Toggle theme"
@@ -96,51 +92,61 @@ const Navbar = () => {
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          <button 
-            onClick={toggleMenu} 
-            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <button 
+                className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Toggle menu"
+              >
+                <Menu size={24} />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0 w-64 bg-white dark:bg-gray-900">
+              <nav className="flex flex-col mt-8">
+                <SheetClose asChild>
+                  <Link 
+                    to="/" 
+                    onClick={scrollToTop}
+                    className="px-6 py-4 text-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    Home
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <a 
+                    href="#about" 
+                    className="px-6 py-4 text-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    About
+                  </a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <a 
+                    href="#services" 
+                    className="px-6 py-4 text-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    Services
+                  </a>
+                </SheetClose>
+                <SheetClose asChild>
+                  <a 
+                    href="#contact" 
+                    className="px-6 py-4 text-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    Contact
+                  </a>
+                </SheetClose>
+                <button 
+                  onClick={toggleTheme}
+                  className="mx-6 mt-4 p-2 rounded-full self-start hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  aria-label="Toggle theme"
+                >
+                  {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} glass-card shadow-lg mt-2 mx-4 rounded-lg overflow-hidden`}>
-        <nav className="flex flex-col">
-          <Link 
-            to="/" 
-            onClick={() => {
-              toggleMenu();
-              scrollToTop();
-            }}
-            className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            Home
-          </Link>
-          <a 
-            href="#about" 
-            className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" 
-            onClick={toggleMenu}
-          >
-            About
-          </a>
-          <a 
-            href="#services" 
-            className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" 
-            onClick={toggleMenu}
-          >
-            Services
-          </a>
-          <a 
-            href="#contact" 
-            className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" 
-            onClick={toggleMenu}
-          >
-            Contact
-          </a>
-        </nav>
       </div>
     </header>
   );
